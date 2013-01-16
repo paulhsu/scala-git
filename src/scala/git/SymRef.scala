@@ -22,11 +22,21 @@ class SymRef(path: String) {
     }
 
     private val mRefTo = {
-        val lines = Source.fromFile(mFile).getLines;
+        readContent(mFile.getAbsolutePath())
+    }
+    
+    private def readContent(path: String):String = {
+        val lines = Source.fromFile(path).getLines;
         if(lines.hasNext){
             val ref = lines.next()
             ref
+        }else{
+            ""
         }
+    }
+    
+    def dereference(): String = {
+        readContent(mRefTo)
     }
 
     override def toString(): String = {
