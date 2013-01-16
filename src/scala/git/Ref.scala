@@ -1,5 +1,7 @@
 package scala.git
 
+import java.io.File
+
 
 /*
  * ref
@@ -9,5 +11,6 @@ package scala.git
  *
  */
 class Ref(path: String) {
-
+    require((new File(path)).exists())
+    private val mFile = new File(path);
 }

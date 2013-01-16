@@ -83,6 +83,8 @@ class Repository(path:String) {
     require((new File(HEAD_path)).exists());
     private var HEAD: SymRef = new SymRef(HEAD_path);
 
+    //println("HEAD:\n"+HEAD.toString())
+
 
     // The default development branch. Whenever you create a git repository,
     // a branch named "master" is created, and becomes the active branch.

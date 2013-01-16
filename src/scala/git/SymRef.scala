@@ -1,4 +1,7 @@
 package scala.git
+
+import java.io.File
+import scala.io.Source
 /*
  * symref
  * Symbolic reference: instead of containing the SHA1 id itself, it is of the
@@ -9,4 +12,25 @@ package scala.git
  */
 class SymRef(path: String) {
 
+    private val mFile = {
+        val file = new File(path);
+        if(file.exists()){
+            file
+        }else{
+            throw new IllegalArgumentException()
+        }
+    }
+
+    private val mRefTo = {
+        val lines = Source.fromFile(mFile).getLines;
+        if(lines.hasNext){
+            val ref = lines.next()
+            ref
+        }
+    }
+
+    override def toString(): String = {
+        "SymRef: " + mFile.getAbsolutePath() + "\n"+
+        "RefTo: " + mRefTo + "\n"
+    }
 }
